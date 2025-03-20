@@ -1,0 +1,7 @@
+/* Right Side */
+.main .right-side {
+    flex-grow: 1;
+    background-color: whitesmoke;
+    margin-top: 48px;
+    position: relative;
+  }

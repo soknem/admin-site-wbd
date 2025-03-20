@@ -1,0 +1,43 @@
+.main-today {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  padding: 0px 20px;
+}
+
+.main-today .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  position: relative;
+  .column {
+    width: 100%;
+    height: 100%;
+    padding-top: 27px;
+  }
+  .column1 {
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+  }
+  .column2 {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+  }
+}
+
+.main-today .header.sidebar-hidden {
+  margin-left: 300px; /* Adjust this value based on your sidebar width */
+  background-color: red; /* For debugging */
+}
+
+.main-today .add-container {
+}
+
+.main-today .data {
+}
