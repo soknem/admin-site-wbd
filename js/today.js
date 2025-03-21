@@ -1,3 +1,5 @@
+import { showToast } from "./functions.js";
+
 export function handleAddButtonClick() {
   const rightSide = document.getElementById("right-side");
 
@@ -30,8 +32,9 @@ export function handleAddButtonClick() {
 
         ul.appendChild(newItem);
         textInput.value = "";
+          showToast("Successfully added!", "success");
       } else {
-        alert("Input field is empty!");
+        showToast("Input field is empty!", "warning");
       }
     }
 
@@ -43,4 +46,9 @@ export function handleAddButtonClick() {
       }
     }
   });
+}
+
+export function testToast() {
+  // showToast("Successfully added!", "success");
+  // showToast("Something went wrong!", "error");
 }

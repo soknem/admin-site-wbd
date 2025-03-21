@@ -12,7 +12,6 @@ body {
   height: 100vh;
 }
 
-
 /* Main Section */
 .main {
   display: flex;
@@ -29,6 +28,5 @@ body {
   }
 }
 
-.main .right-side{
-
+.main .right-side {
 }
