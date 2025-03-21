@@ -11,33 +11,172 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 100px;
+  height: 120px;
   position: relative;
+  align-items: start;
+  padding-top: 27px;
+  font-size: 1rem;
+  .material-icons-outlined {
+    font-size: 1rem;
+    color: gray;
+  }
   .column {
     width: 100%;
-    height: 100%;
-    padding-top: 27px;
+    display: inline;
+    color: gray;
+    .item {
+      padding: 3px;
+      cursor: pointer;
+    }
+    .item:hover {
+      background-color: white;
+    }
   }
   .column1 {
     display: flex;
     justify-content: start;
-    gap: 10px;
+    gap: 30px;
+
+    .item1 .my-day-icon {
+      font-size: 1.3rem;
+    }
+
+    .item1 .my-day {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: black;
+    }
+    .item1 .day-detail {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: gray;
+    }
   }
   .column2 {
     display: flex;
     justify-content: end;
-    gap: 10px;
+    gap: 40px;
   }
 }
 
 .main-today .header.sidebar-hidden {
-  margin-left: 300px; /* Adjust this value based on your sidebar width */
-  background-color: red; /* For debugging */
+  margin-left: 30px;
 }
 
 .main-today .add-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 120px;
+  border-radius: 5px;
+  outline: 0.3px solid lightgray;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  .box {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+  }
+}
+
+.main-today .add-container .top {
+  background-color: white;
+  position: relative;
+  .circle {
+    width: 16px;
+    height: 16px;
+    border: 1px solid blue;
+    border-radius: 50%;
+    appearance: none;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  .text-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    &::placeholder {
+      color: blue;
+      opacity: 1;
+    }
+
+    &:focus::placeholder {
+      color: #555;
+    }
+  }
+}
+.material-icons-outlined {
+  font-size: 1.2rem;
+}
+.main-today .add-container .bottom {
+  outline: 0.2px solid lightgray;
+  justify-content: space-between;
+
+  .icon-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: gray;
+    .material-icons-outlined {
+      font-size: 1.2rem;
+      color: gray;
+      cursor: pointer;
+    }
+  }
+  .add-btn {
+    padding: 7px;
+    background-color: white;
+    border-radius: 3px;
+    border: none;
+    outline: 0.3px solid lightgray;
+    cursor: pointer;
+  }
 }
 
 .main-today .data {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10px;
+  /* background-color: aqua; */
+  overflow-y: auto;
+  height: 100%;
+}
+
+.main-today .data .ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  position: relative;
+}
+
+.main-today .data .ul .item {
+  display: flex;
+  width: 100%;
+  height: 48px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
+
+  input {
+    width: 80px;
+    height: 15px;
+    color: blue;
+  }
+  .title {
+    width: 100%;
+  }
+  .delete-btn {
+    width: 70px;
+    text-align: center;
+    color: red;
+    cursor: pointer;
+  }
 }

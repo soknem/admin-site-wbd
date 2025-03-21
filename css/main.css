@@ -9,14 +9,15 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Comfortaa", sans-serif;
+  height: 100vh;
 }
+
 
 /* Main Section */
 .main {
   display: flex;
   width: 100%;
-  height: 100vh;
-  position: relative;
+  height: 100%;
 
   .hamburger {
     color: rebeccapurple;
@@ -26,4 +27,8 @@ body {
     cursor: pointer;
     z-index: 50;
   }
+}
+
+.main .right-side{
+
 }

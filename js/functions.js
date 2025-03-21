@@ -33,21 +33,28 @@ export function handleClearButtonClick() {
 export function handleHamburgerButtonClick() {
   const hamburgerBtn = document.getElementById("menuToggle");
   const sideBar = document.getElementById("side-bar");
-  const header = document.querySelector(".main-today .header");
+  const rightSide = document.getElementById("right-side");
 
   hamburgerBtn.addEventListener("click", function () {
-    if (sideBar.style.display === "none" || sideBar.style.display === "") {
-   
-      sideBar.style.display = "flex";
+    const activeMenu = document.querySelector(".side-bar .item.active");
 
-      header.classList.remove("sidebar-hidden");
-      console.log("Sidebar is visible");
+    const header = rightSide.querySelector(".main-today .header");
+
+    if (sideBar.style.display === "none" || sideBar.style.display === null) {
+      sideBar.style.display = "flex";
+      if (header) {
+        header.classList.remove("sidebar-hidden");
+      }
     } else {
-      
       sideBar.style.display = "none";
-     
-      header.classList.add("sidebar-hidden");
-      console.log("Sidebar is hidden");
+
+      if (activeMenu && activeMenu.id === "todayMenu") {
+        if (header) {
+          header.classList.add("sidebar-hidden");
+        }
+      } else {
+        console.log("for other page");
+      }
     }
   });
 }
