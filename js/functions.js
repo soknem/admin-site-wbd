@@ -112,29 +112,3 @@ export function handleSidebarContentLoading() {
     });
   });
 }
-
-export function showToast(message, type = "success") {
-  const toastContainer = document.getElementById("toast-container");
-
-  toastContainer.innerHTML = "";
-
-  const toast = document.createElement("div");
-  toast.className = `toast ${type}`;
-  toast.innerHTML = `
-      <span>${message}</span>
-      <button class="close-btn">&times;</button>
-  `;
-
-  toast.querySelector(".close-btn").addEventListener("click", () => {
-    removeToast(toast);
-  });
-
-  toastContainer.appendChild(toast);
-
-  setTimeout(() => removeToast(toast), 3500);
-}
-
-function removeToast(toast) {
-  toast.style.animation = "fadeOut 0.5s ease-out";
-  setTimeout(() => toast.remove(), 200);
-}

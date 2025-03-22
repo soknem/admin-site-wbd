@@ -7,7 +7,7 @@ import {
   handleSidebarContentLoading,
 } from "./functions.js";
 
-import { handleAddButtonClick, testToast } from "./today.js";
+import { handleAddButtonClick, handleLoadContentToToday } from "./today.js";
 
 function initializeEventListeners() {
   handleSearchInput();
@@ -16,7 +16,7 @@ function initializeEventListeners() {
   handleActiveSidebar();
   handleSidebarContentLoading();
   handleAddButtonClick();
-  testToast();
+  handleLoadContentToToday();
 }
 
 // Run when the DOM is fully loaded
