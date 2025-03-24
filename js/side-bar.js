@@ -1,25 +1,26 @@
 import { handleLoadContentToToday } from "./today.js";
+import { handleLoadContentToWork } from "./work.js";
 import { getTodoCount } from "./api.js";
 // Function to handle active sidebar
 export function handleActiveSidebar() {
-    const menuItems = document.querySelectorAll(".side-bar .item");
-  
-    menuItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        // Prevent click if the item is already active
-  
-        menuItems.forEach((i) => i.classList.remove("active"));
-        item.classList.add("active");
-  
-        // alert(item)
-        if (item.id === "todayMenu") {
-          
-          handleLoadContentToToday();
-        }
-      });
+  const menuItems = document.querySelectorAll(".side-bar .item");
+
+  menuItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      // Prevent click if the item is already active
+
+      menuItems.forEach((i) => i.classList.remove("active"));
+      item.classList.add("active");
+
+      // alert(item)
+      if (item.id === "todayMenu") {
+        handleLoadContentToToday();
+      } else if (item.id === "workMenu") {
+        handleLoadContentToWork();
+      }
     });
-  }
-  
+  });
+}
 
 export function handleSidebarContentLoading() {
   const rightSide = document.getElementById("right-side");

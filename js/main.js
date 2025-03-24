@@ -18,6 +18,13 @@ import {
   handleLiClick,
 } from "./today.js";
 
+import {
+  handleWorkAddButtonClick,
+  handleLoadContentToWork,
+  handleWorkToggleTodoClick,
+  handleWorkLiClick,
+} from "./work.js";
+
 function initializeEventListeners() {
   handleSearchInput();
   handleClearButtonClick();
@@ -29,6 +36,10 @@ function initializeEventListeners() {
   handleSidebarCountLoading();
   handleToggleTodoClick();
   handleLiClick();
+  handleWorkAddButtonClick();
+  handleLoadContentToWork();
+  handleWorkToggleTodoClick();
+  handleWorkLiClick();
 }
 
 // Run when the DOM is fully loaded

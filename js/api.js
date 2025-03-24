@@ -1,8 +1,8 @@
 const API_URL = "http://localhost:8081/api/v1/todos";
 
 // ✅ GET all todos
-export async function getTodos() {
-  const response = await fetch(`${API_URL}?status=`);
+export async function getTodos(status) {
+  const response = await fetch(`${API_URL}?status=${status}`);
   return response.json();
 }
 

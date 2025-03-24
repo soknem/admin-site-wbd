@@ -2,12 +2,12 @@ import { showToast, showLoading } from "./util.js";
 import { addTodo, deleteTodo, getTodos, toggleTodoDone } from "./api.js";
 import { handleSidebarCountLoading } from "./side-bar.js";
 
-export function handleAddButtonClick() {
+export function handleWorkAddButtonClick() {
   const rightSide = document.getElementById("right-side");
 
   const attachInputEventListener = () => {
     const textInput = rightSide.querySelector(
-      ".main-today .add-container .input-container .text-input"
+      ".main-work .add-container .input-container .text-input"
     );
 
     if (textInput) {
@@ -29,7 +29,7 @@ export function handleAddButtonClick() {
   observer.observe(rightSide, { childList: true, subtree: true });
 
   rightSide.addEventListener("click", async function (event) {
-    const ul = rightSide.querySelector(".main-today .data .ul");
+    const ul = rightSide.querySelector(".main-work .data .ul");
     if (!ul) {
       console.error("Error: UL element not found!");
       return;
@@ -60,7 +60,7 @@ export function handleAddButtonClick() {
 
   async function addTodoItem() {
     const textInput = rightSide.querySelector(
-      ".main-today .add-container .input-container .text-input"
+      ".main-work .add-container .input-container .text-input"
     );
 
     if (textInput && textInput.value.trim() !== "") {
@@ -75,7 +75,7 @@ export function handleAddButtonClick() {
         });
 
         if (newTodo && newTodo.uuid) {
-          const ul = rightSide.querySelector(".main-today .data .ul");
+          const ul = rightSide.querySelector(".main-work .data .ul");
           addTodoToList(ul, newTodo);
           handleSidebarCountLoading();
           showToast("Successfully added!", "success");
@@ -95,7 +95,7 @@ export function handleAddButtonClick() {
   }
 }
 
-export async function handleLoadContentToToday() {
+export async function handleLoadContentToWork() {
   const rightSide = document.getElementById("right-side");
   if (!rightSide) {
     console.error("Error: Right-side element not found!");
@@ -103,22 +103,27 @@ export async function handleLoadContentToToday() {
   }
 
   const observer = new MutationObserver((mutations, obs) => {
-    const ul = rightSide.querySelector(".main-today .data .ul");
+    const ul = rightSide.querySelector(".main-work .data .ul");
     if (ul) {
-      obs.disconnect();
-      ul.innerHTML = "";
+      obs.disconnect(); // Stop observing to prevent duplicate calls
+
+      console.log("Clearing old todos...");
+      ul.innerHTML = ""; // Clear old todos before loading new ones
       loadTodos(ul);
     }
   });
 
-  observer.observe(rightSide, { childList: true, subtree: true });
+  observer.observe(rightSide, { childList: true, subtree: false });
 }
 
 async function loadTodos(ul) {
   try {
     showLoading(true);
-    const todos = await getTodos("myDay");
+    const todos = await getTodos();
     console.log("Fetched todos:", todos);
+
+    ul.innerHTML = "";
+
     todos.forEach((todo) => {
       if (!todo) {
         console.error("Invalid todo object:", todo);
@@ -140,19 +145,22 @@ export function addTodoToList(ul, todo) {
     return;
   }
 
+  const existingItem = ul.querySelector(`[data-uuid="${todo.uuid}"]`);
+  if (existingItem) return;
+
   const newItem = document.createElement("li");
   newItem.classList.add("item");
   newItem.dataset.uuid = todo.uuid;
-
   newItem.innerHTML = `
-    <input type="checkbox" class="circle" ${todo.isDone ? "checked" : ""} />
-    <span class="title">${todo.title}</span>
-    <span class="material-icons-outlined delete-btn">delete</span>
-  `;
+      <input type="checkbox" class="circle" ${todo.isDone ? "checked" : ""} />
+      <span class="title">${todo.title}</span>
+      <span class="material-icons-outlined delete-btn">delete</span>
+    `;
+
   ul.appendChild(newItem);
 }
 
-export function handleToggleTodoClick() {
+export function handleWorkToggleTodoClick() {
   const rightSide = document.getElementById("right-side");
   if (!rightSide) {
     console.error("Error: Right-side element not found!");
@@ -181,7 +189,7 @@ export function handleToggleTodoClick() {
   });
 }
 
-export function handleLiClick() {
+export function handleWorkLiClick() {
   const rightSide = document.getElementById("right-side");
   if (!rightSide) {
     console.error("Error: Right-side element not found!");
