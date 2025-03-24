@@ -29,7 +29,8 @@ export function handleWorkAddButtonClick() {
   observer.observe(rightSide, { childList: true, subtree: true });
 
   rightSide.addEventListener("click", async function (event) {
-    const ul = rightSide.querySelector(".main-work .data .ul");
+    event.stopPropagation();
+    const ul = rightSide.querySelector(".ul");
     if (!ul) {
       console.error("Error: UL element not found!");
       return;
@@ -117,7 +118,7 @@ export async function handleLoadContentToWork() {
 async function loadTodos(ul) {
   try {
     showLoading(true);
-    const todos = await getTodos();
+    const todos = await getTodos("task");
     console.log("Fetched todos:", todos);
 
     ul.innerHTML = "";
@@ -167,6 +168,7 @@ export function handleWorkToggleTodoClick() {
   }
 
   rightSide.addEventListener("change", async function (event) {
+    event.stopPropagation();
     if (event.target && event.target.classList.contains("circle")) {
       const checkbox = event.target;
       const item = checkbox.closest(".item");

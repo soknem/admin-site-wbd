@@ -16,6 +16,8 @@ import {
   handleLoadContentToToday,
   handleToggleTodoClick,
   handleLiClick,
+  handleDropdownToggle,
+  handleIsDoneCountLoading,
 } from "./today.js";
 
 import {
@@ -40,6 +42,8 @@ function initializeEventListeners() {
   handleLoadContentToWork();
   handleWorkToggleTodoClick();
   handleWorkLiClick();
+  handleDropdownToggle()
+  handleIsDoneCountLoading();
 }
 
 // Run when the DOM is fully loaded

@@ -1,5 +1,11 @@
 import { showToast, showLoading } from "./util.js";
-import { addTodo, deleteTodo, getTodos, toggleTodoDone } from "./api.js";
+import {
+  addTodo,
+  deleteTodo,
+  getTodos,
+  toggleTodoDone,
+  getTodoCountMyDayIsDone,
+} from "./api.js";
 import { handleSidebarCountLoading } from "./side-bar.js";
 
 export function handleAddButtonClick() {
@@ -29,7 +35,8 @@ export function handleAddButtonClick() {
   observer.observe(rightSide, { childList: true, subtree: true });
 
   rightSide.addEventListener("click", async function (event) {
-    const ul = rightSide.querySelector(".main-today .data .ul");
+    event.stopPropagation();
+    const ul = rightSide.querySelector(".ul");
     if (!ul) {
       console.error("Error: UL element not found!");
       return;
@@ -42,6 +49,7 @@ export function handleAddButtonClick() {
     if (event.target && event.target.classList.contains("delete-btn")) {
       const liToDelete = event.target.closest("li");
       const todoUuid = liToDelete.dataset.uuid;
+      const section = liToDelete.dataset.section;
 
       if (todoUuid) {
         try {
@@ -49,6 +57,9 @@ export function handleAddButtonClick() {
           await deleteTodo(todoUuid);
           liToDelete.remove();
           handleSidebarCountLoading();
+          if (section === "myDay") {
+            handleIsDoneCountLoading();
+          }
           showLoading(false);
           showToast("Successfully deleted!", "success");
         } catch (error) {
@@ -119,6 +130,7 @@ async function loadTodos(ul) {
     showLoading(true);
     const todos = await getTodos("myDay");
     console.log("Fetched todos:", todos);
+    handleIsDoneCountLoading();
     todos.forEach((todo) => {
       if (!todo) {
         console.error("Invalid todo object:", todo);
@@ -161,18 +173,34 @@ export function handleToggleTodoClick() {
   }
 
   rightSide.addEventListener("change", async function (event) {
+    event.stopPropagation();
     if (event.target && event.target.classList.contains("circle")) {
       const checkbox = event.target;
       const item = checkbox.closest(".item");
       const uuid = item ? item.dataset.uuid : null;
+      const section = item ? item.dataset.section : null;
 
       if (uuid) {
         try {
-          await toggleTodoDone(uuid);
+          const todo = await toggleTodoDone(uuid);
           if (checkbox.checked) {
             handleSidebarCountLoading();
             showToast("Task is done!", "success");
             item.remove();
+            const ul = rightSide.querySelector(
+              ".main-today .data .dropdown-content"
+            );
+            addTodoToList(ul, todo, "myDay");
+          } else if (!checkbox.checkbox) {
+            handleSidebarCountLoading();
+            showToast("Task is remove from done!", "success");
+            item.remove();
+            const ul = rightSide.querySelector(".main-today .data .ul");
+            addTodoToList(ul, todo, "myDay");
+          }
+
+          if (section === "myDay") {
+            handleIsDoneCountLoading();
           }
         } catch (error) {
           showToast("Failed to update todo status!", "error");
@@ -200,4 +228,78 @@ export function handleLiClick() {
       }
     }
   });
+}
+
+export function handleDropdownToggle() {
+  const rightSide = document.getElementById("right-side");
+  if (!rightSide) {
+    console.error("Right-side element not found!");
+    return;
+  }
+
+  rightSide.addEventListener("click", async function (event) {
+    event.stopPropagation();
+    const dropDownHeader = event.target.closest(".drop-down-header");
+
+    if (dropDownHeader) {
+      const dropdownContent = dropDownHeader.nextElementSibling;
+      const arrowIcon = dropDownHeader.querySelector(".arrow-icon");
+
+      if (dropdownContent) {
+        const isShown = dropdownContent.classList.toggle("show");
+
+        if (arrowIcon) {
+          dropDownHeader.classList.toggle("rotate-down");
+        }
+
+        if (isShown) {
+          dropDownHeader.style.outline = "none";
+        } else {
+          dropDownHeader.style.boxShadow =
+            "inset 0px -1px 0px 0px rgba(185, 183, 182, 0.623)";
+        }
+
+        // Fetch and populate only when showing
+        if (isShown && dropdownContent.childElementCount === 0) {
+          try {
+            showLoading(true);
+            const todos = await getTodos("taskDone");
+            if (todos.length === 0) {
+              dropdownContent.innerHTML = "<p>No completed tasks.</p>";
+            } else {
+              todos.forEach((todo) => {
+                addTodoToList(dropdownContent, todo, "myDay");
+              });
+            }
+          } catch (error) {
+            console.error("Error loading completed todos:", error);
+            dropdownContent.innerHTML = "<p>Failed to load data.</p>";
+          } finally {
+            showLoading(false);
+          }
+        }
+
+        if (!isShown) {
+          dropdownContent.innerHTML = "";
+        }
+      }
+    }
+  });
+}
+
+export async function handleIsDoneCountLoading() {
+  const rightSide = document.getElementById("right-side");
+  if (!rightSide) {
+    console.error("Error: Right-side element not found!");
+    return;
+  }
+
+  const doneCount = rightSide.querySelector(
+    ".main-today .data .drop-down-header .done-count"
+  );
+
+  if (doneCount) {
+    const myDayCountIsDone = await getTodoCountMyDayIsDone();
+    doneCount.innerText = myDayCountIsDone.todayIsDone;
+  }
 }

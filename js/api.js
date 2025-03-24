@@ -7,6 +7,12 @@ export async function getTodos(status) {
 }
 
 // ✅ GET a todo by uuid
+export async function getTodoCountMyDayIsDone() {
+  const response = await fetch(`${API_URL}/counts/my-day/done`);
+  return response.json();
+}
+
+// ✅ GET a todo by uuid
 export async function getTodo(uuid) {
   const response = await fetch(`${API_URL}/${uuid}`);
   return response.json();
@@ -47,10 +53,11 @@ export async function updateTodo(uuid, updatedTodo) {
 
 // ✅ PUT (Mark as done/undone)
 export async function toggleTodoDone(uuid) {
-  await fetch(`${API_URL}/${uuid}/toggle`, {
+  const response = await fetch(`${API_URL}/${uuid}/toggle`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
   });
+  return response.json();
 }
 
 // ✅ DELETE (Remove todo)
