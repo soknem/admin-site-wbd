@@ -6,6 +6,64 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="main-work"></div>
+    <div class="main-work" id="main-work">
+      <div class="header" id="header">
+        <div class="column column1">
+          <div class="item item1">
+            <span class="material-icons-outlined menu-icon my-day-icon"
+              >brightness_7</span
+            >
+            <span class="my-day">ថ្ងៃរបស់ខ្ញុំ</span>
+            <br />
+            <span class="day-detail">ថ្ងៃសុក្រ,១​មិនា២១</span>
+          </div>
+          <div class="item">
+            <span class="material-icons-outlined">grid_view</span>
+            <span>ក្រឡា</span>
+          </div>
+          <div class="item">
+            <span class="material-icons-outlined">menu</span>
+            <span>បញ្ជី</span>
+          </div>
+        </div>
+        <div class="column column2">
+          <div class="item">
+            <span class="material-icons-outlined">sort</span>
+            <span>តម្រៀប</span>
+          </div>
+          <div class="item">
+            <span class="material-icons-outlined">check_box_outline_blank</span>
+            <span> ក្រុម</span>
+          </div>
+          <div class="item">
+            <span class="material-icons-outlined">lightbulb</span>
+            <span>កាណែនាំ</span>
+          </div>
+        </div>
+      </div>
+      <div class="add-container">
+        <div class="box top input-container">
+          <input type="radio" class="circle" />
+          <input
+            type="text"
+            class="text-input"
+            id="text-input"
+            placeholder="បន្ថែមការងារមួយ"
+          />
+        </div>
+        <div class="box bottom">
+          <div class="icon-container">
+            <span class="material-icons-outlined">calendar_month</span>
+            <span class="material-icons-outlined">notifications</span>
+            <span class="material-icons-outlined">sync</span>
+          </div>
+          <button class="add-btn" id="add-btn">បន្ថែម</button>
+        </div>
+      </div>
+
+      <div class="data">
+        <ul class="ul" id="ul"></ul>
+      </div>
+    </div>
   </body>
 </html>

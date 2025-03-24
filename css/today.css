@@ -142,7 +142,7 @@
   flex-direction: column;
   width: 100%;
   margin-top: 10px;
-  /* background-color: aqua; */
+  background-color: aqua;
   overflow-y: auto;
   height: 100%;
 }
@@ -153,6 +153,9 @@
   width: 100%;
   gap: 8px;
   position: relative;
+  .circle {
+    cursor: pointer;
+  }
 }
 
 .main-today .data .ul .item {
@@ -177,7 +180,12 @@
   }
   .title {
     width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
   }
+
   .delete-btn {
     width: 70px;
     text-align: center;

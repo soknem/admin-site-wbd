@@ -2,7 +2,19 @@ const API_URL = "http://localhost:8081/api/v1/todos";
 
 // ✅ GET all todos
 export async function getTodos() {
-  const response = await fetch(API_URL);
+  const response = await fetch(`${API_URL}?status=`);
+  return response.json();
+}
+
+// ✅ GET a todo by uuid
+export async function getTodo(uuid) {
+  const response = await fetch(`${API_URL}/${uuid}`);
+  return response.json();
+}
+
+// ✅ GET all count todos
+export async function getTodoCount() {
+  const response = await fetch(`${API_URL}/counts`);
   return response.json();
 }
 
@@ -35,12 +47,10 @@ export async function updateTodo(uuid, updatedTodo) {
 
 // ✅ PUT (Mark as done/undone)
 export async function toggleTodoDone(uuid) {
-  const response = await fetch(`${API_URL}/${uuid}/toggle`, {
+  await fetch(`${API_URL}/${uuid}/toggle`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
   });
-
-  return response.json();
 }
 
 // ✅ DELETE (Remove todo)

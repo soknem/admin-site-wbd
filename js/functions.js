@@ -1,5 +1,4 @@
 // functions.js
-
 // Function to handle search input
 export function handleSearchInput() {
   const searchInput = document.getElementById("searchInput");
@@ -59,56 +58,3 @@ export function handleHamburgerButtonClick() {
   });
 }
 
-// Function to handle active sidebar
-export function handleActiveSidebar() {
-  const menuItems = document.querySelectorAll(".side-bar .item");
-
-  menuItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      menuItems.forEach((i) => i.classList.remove("active"));
-      item.classList.add("active");
-    });
-  });
-}
-
-export function handleSidebarContentLoading() {
-  const rightSide = document.getElementById("right-side");
-  const menuItems = document.querySelectorAll(".side-bar .item");
-
-  function loadContent(url) {
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.text();
-      })
-      .then((data) => {
-        const bodyContent = extractBodyTag(data);
-        if (bodyContent) {
-          rightSide.innerHTML = bodyContent;
-        } else {
-          console.warn("No content found in the fetched file.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error loading content:", error);
-      });
-  }
-
-  function extractBodyTag(html) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-    return doc.body.outerHTML;
-  }
-
-  loadContent("html/today.html");
-
-  // Add click event listeners to menu items
-  menuItems.forEach((item) => {
-    item.addEventListener("click", function () {
-      const page = this.getAttribute("data-page");
-      loadContent(page);
-    });
-  });
-}

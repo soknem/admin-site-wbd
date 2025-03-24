@@ -133,9 +133,9 @@
     }
 
     .item {
-      padding-left: 20px;
+      padding: 0px 20px;
       display: flex;
-      justify-content: start;
+      justify-content: space-between;
       align-items: center;
       gap: 15px;
       width: 100%;
@@ -143,7 +143,12 @@
       position: relative;
       /* overflow: hidden; */
       cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
 
+      .title {
+        text-align: start;
+        width: 100%;
+      }
       &:hover {
         background-color: whitesmoke;
       }
