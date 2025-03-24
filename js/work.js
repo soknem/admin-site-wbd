@@ -69,14 +69,14 @@ export function handleWorkAddButtonClick() {
         const newTodo = await addTodo({
           title: textInput.value,
           description: null,
-          deadLine: null,
+          deadLine: new Date(Date.now()).toISOString().split("T")[0],
           isMyDay: true,
           isImportant: false,
         });
 
         if (newTodo && newTodo.uuid) {
           const ul = rightSide.querySelector(".main-work .data .ul");
-          addTodoToList(ul, newTodo);
+          addTodoToList(ul, newTodo, "section");
           handleSidebarCountLoading();
           showToast("Successfully added!", "success");
           textInput.value = "";
@@ -105,10 +105,8 @@ export async function handleLoadContentToWork() {
   const observer = new MutationObserver((mutations, obs) => {
     const ul = rightSide.querySelector(".main-work .data .ul");
     if (ul) {
-      obs.disconnect(); // Stop observing to prevent duplicate calls
-
-      console.log("Clearing old todos...");
-      ul.innerHTML = ""; // Clear old todos before loading new ones
+      obs.disconnect();
+      ul.innerHTML = "";
       loadTodos(ul);
     }
   });
@@ -129,7 +127,7 @@ async function loadTodos(ul) {
         console.error("Invalid todo object:", todo);
         return;
       }
-      addTodoToList(ul, todo);
+      addTodoToList(ul, todo, "work");
     });
   } catch (error) {
     console.error("Error loading todos:", error);
@@ -139,7 +137,7 @@ async function loadTodos(ul) {
   }
 }
 
-export function addTodoToList(ul, todo) {
+export function addTodoToList(ul, todo, section) {
   if (!todo || !todo.uuid) {
     console.error("Todo object is invalid or does not have uuid:", todo);
     return;
@@ -151,6 +149,7 @@ export function addTodoToList(ul, todo) {
   const newItem = document.createElement("li");
   newItem.classList.add("item");
   newItem.dataset.uuid = todo.uuid;
+  newItem.dataset.section = section;
   newItem.innerHTML = `
       <input type="checkbox" class="circle" ${todo.isDone ? "checked" : ""} />
       <span class="title">${todo.title}</span>
@@ -197,10 +196,14 @@ export function handleWorkLiClick() {
   }
 
   rightSide.addEventListener("click", async function (event) {
+    event.stopPropagation();
     if (event.target && event.target.classList.contains("title")) {
       const item = event.target.closest(".item");
       const uuid = item ? item.dataset.uuid : null;
-      alert("uuid:" + uuid);
+      const section = item.dataset.section;
+      if (section === "work") {
+        alert("uuid:" + uuid+section);
+      }
     }
   });
 }

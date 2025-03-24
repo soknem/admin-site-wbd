@@ -76,7 +76,7 @@ export function handleAddButtonClick() {
 
         if (newTodo && newTodo.uuid) {
           const ul = rightSide.querySelector(".main-today .data .ul");
-          addTodoToList(ul, newTodo);
+          addTodoToList(ul, newTodo, "myDay");
           handleSidebarCountLoading();
           showToast("Successfully added!", "success");
           textInput.value = "";
@@ -124,7 +124,7 @@ async function loadTodos(ul) {
         console.error("Invalid todo object:", todo);
         return;
       }
-      addTodoToList(ul, todo);
+      addTodoToList(ul, todo, "myDay");
     });
   } catch (error) {
     console.error("Error loading todos:", error);
@@ -134,7 +134,7 @@ async function loadTodos(ul) {
   }
 }
 
-export function addTodoToList(ul, todo) {
+export function addTodoToList(ul, todo, section) {
   if (!todo || !todo.uuid) {
     console.error("Todo object is invalid or does not have uuid:", todo);
     return;
@@ -143,6 +143,7 @@ export function addTodoToList(ul, todo) {
   const newItem = document.createElement("li");
   newItem.classList.add("item");
   newItem.dataset.uuid = todo.uuid;
+  newItem.dataset.section = section;
 
   newItem.innerHTML = `
     <input type="checkbox" class="circle" ${todo.isDone ? "checked" : ""} />
@@ -189,10 +190,14 @@ export function handleLiClick() {
   }
 
   rightSide.addEventListener("click", async function (event) {
+    event.stopPropagation();
     if (event.target && event.target.classList.contains("title")) {
       const item = event.target.closest(".item");
       const uuid = item ? item.dataset.uuid : null;
-      alert("uuid:" + uuid);
+      const section = item ? item.dataset.section : null;
+      if (section === "myDay") {
+        alert("uuid:" + uuid + section);
+      }
     }
   });
 }
