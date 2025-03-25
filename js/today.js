@@ -18,17 +18,7 @@ export function handleAddButtonClick() {
 
       if (textInput && textInput.value.trim() !== "") {
         const itemCount = ul.children.length + 1;
-
-        // Create new list item
-        const newItem = document.createElement("li");
-        newItem.classList.add("item", `item${itemCount}`);
-        newItem.id = `item${itemCount}`;
-
-        newItem.innerHTML = `
-          <input type="radio" class="circle" />
-          <span class="title">${textInput.value}</span>
-          <span class="material-icons-outlined delete-btn" id="delete-btn${itemCount}">delete</span>
-        `;
+ 
 
         ul.appendChild(newItem);
         textInput.value = "";
