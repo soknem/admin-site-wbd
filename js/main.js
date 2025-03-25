@@ -11,6 +11,8 @@ import {
   handleSidebarCountLoading,
 } from "./side-bar.js";
 
+import { handleToggleTodoImportantClick } from "./util.js";
+
 import {
   handleAddButtonClick,
   handleLoadContentToToday,
@@ -48,6 +50,7 @@ function initializeEventListeners() {
   handleIsDoneCountLoading();
   handleWorkDropdownToggle();
   handleWorkIsDoneCountLoading();
+  handleToggleTodoImportantClick();
 }
 
 // Run when the DOM is fully loaded

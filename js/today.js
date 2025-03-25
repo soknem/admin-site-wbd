@@ -6,6 +6,7 @@ import {
   toggleTodoDone,
   getTodoCountIsDone,
   getMyDayDate,
+  toggleTodoImportant,
 } from "./api.js";
 import { handleSidebarCountLoading } from "./side-bar.js";
 
@@ -162,7 +163,8 @@ export function addTodoToList(ul, todo, section) {
   newItem.innerHTML = `
     <input type="checkbox" class="circle" ${todo.isDone ? "checked" : ""} />
     <span class="title">${todo.title}</span>
-    <span class="material-icons-outlined delete-btn">delete</span>
+    <span class="material-icons-outlined delete-btn btn-icon">delete</span>
+    <span class="material-icons-outlined important-btn btn-icon">${todo.isImportant?"star":"star_rate"}</span>
   `;
   ul.appendChild(newItem);
 }
@@ -322,3 +324,4 @@ export async function handleMyDayDateLoading() {
     myDateDateElm.innerText = myDayDate.date;
   }
 }
+

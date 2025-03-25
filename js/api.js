@@ -59,7 +59,16 @@ export async function updateTodo(uuid, updatedTodo) {
 
 // ✅ PUT (Mark as done/undone)
 export async function toggleTodoDone(uuid) {
-  const response = await fetch(`${API_URL}/${uuid}/toggle`, {
+  const response = await fetch(`${API_URL}/${uuid}/done/toggle`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+  });
+  return response.json();
+}
+
+// ✅ PUT (Mark as important/unimportant)
+export async function toggleTodoImportant(uuid) {
+  const response = await fetch(`${API_URL}/${uuid}/important/toggle`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
   });

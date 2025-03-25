@@ -209,7 +209,7 @@
   background-color: white;
   box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
   transition: transform 0.1s ease, background-color 0.1s ease;
-  cursor: pointer;
+  /* cursor: pointer; */
   &:hover {
     background-color: #d4d8d8bd;
     transform: translateY(-1px);
@@ -226,12 +226,20 @@
     display: flex;
     align-items: center;
     justify-content: start;
+    cursor: pointer;
+  }
+  .btn-icon{
+    /* width: 50px; */
+    text-align: center;
+    cursor: pointer;
+  }
+  .important-btn{
+    color: blue;
+    margin: 0px 20px;
+
   }
 
   .delete-btn {
-    width: 70px;
-    text-align: center;
     color: red;
-    cursor: pointer;
   }
 }
