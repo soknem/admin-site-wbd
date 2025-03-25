@@ -26,7 +26,7 @@ import {
   handleWorkToggleTodoClick,
   handleWorkLiClick,
   handleWorkDropdownToggle,
-  handleWorkIsDoneCountLoading
+  handleWorkIsDoneCountLoading,
 } from "./work.js";
 
 function initializeEventListeners() {
@@ -44,7 +44,7 @@ function initializeEventListeners() {
   handleLoadContentToWork();
   handleWorkToggleTodoClick();
   handleWorkLiClick();
-  handleDropdownToggle()
+  handleDropdownToggle();
   handleIsDoneCountLoading();
   handleWorkDropdownToggle();
   handleWorkIsDoneCountLoading();

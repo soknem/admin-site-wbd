@@ -6,9 +6,15 @@ export async function getTodos(status) {
   return response.json();
 }
 
-// ✅ GET a todo by uuid
+// ✅ GET is done by section
 export async function getTodoCountIsDone(section) {
   const response = await fetch(`${API_URL}/counts/done?section=${section}`);
+  return response.json();
+}
+
+// ✅ GET my day date
+export async function getMyDayDate() {
+  const response = await fetch(`${API_URL}/my-day/date`);
   return response.json();
 }
 

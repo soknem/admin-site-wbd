@@ -5,6 +5,7 @@ import {
   getTodos,
   toggleTodoDone,
   getTodoCountIsDone,
+  getMyDayDate,
 } from "./api.js";
 import { handleSidebarCountLoading } from "./side-bar.js";
 
@@ -115,6 +116,7 @@ export async function handleLoadContentToToday() {
 
   const observer = new MutationObserver((mutations, obs) => {
     const ul = rightSide.querySelector(".main-today .data .ul");
+    handleMyDayDateLoading();
     if (ul) {
       obs.disconnect();
       ul.innerHTML = "";
@@ -301,5 +303,22 @@ export async function handleIsDoneCountLoading() {
   if (doneCount) {
     const myDayCountIsDone = await getTodoCountIsDone("myDay");
     doneCount.innerText = myDayCountIsDone.done;
+  }
+}
+
+export async function handleMyDayDateLoading() {
+  const rightSide = document.getElementById("right-side");
+  if (!rightSide) {
+    console.error("Error: Right-side element not found!");
+    return;
+  }
+
+  const myDateDateElm = rightSide.querySelector(
+    ".main-today .header .column1 .item1 .day-detail"
+  );
+
+  if (myDateDateElm) {
+    const myDayDate = await getMyDayDate();
+    myDateDateElm.innerText = myDayDate.date;
   }
 }

@@ -18,12 +18,12 @@
   font-size: 1rem;
   .material-icons-outlined {
     font-size: 1rem;
-    color: gray;
+    color: rgb(28, 137, 220);
   }
   .column {
     width: 100%;
     display: inline;
-    color: gray;
+    color: rgb(28, 137, 220);
     .item {
       padding: 3px;
       cursor: pointer;
@@ -37,19 +37,14 @@
     justify-content: start;
     gap: 30px;
 
-    .item1 .my-day-icon {
-      font-size: 1.3rem;
+    .item1 .work-icon {
+      font-size: 1.5rem;
     }
 
-    .item1 .my-day {
-      font-size: 1.3rem;
+    .item1 .work {
+      font-size: 1.4rem;
       font-weight: 600;
-      color: black;
-    }
-    .item1 .day-detail {
-      font-size: 0.9rem;
-      font-weight: 300;
-      color: gray;
+      color: rgb(28, 137, 220);
     }
   }
   .column2 {
