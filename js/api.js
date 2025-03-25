@@ -7,8 +7,8 @@ export async function getTodos(status) {
 }
 
 // ✅ GET a todo by uuid
-export async function getTodoCountMyDayIsDone() {
-  const response = await fetch(`${API_URL}/counts/my-day/done`);
+export async function getTodoCountIsDone(section) {
+  const response = await fetch(`${API_URL}/counts/done?section=${section}`);
   return response.json();
 }
 

@@ -25,6 +25,8 @@ import {
   handleLoadContentToWork,
   handleWorkToggleTodoClick,
   handleWorkLiClick,
+  handleWorkDropdownToggle,
+  handleWorkIsDoneCountLoading
 } from "./work.js";
 
 function initializeEventListeners() {
@@ -44,6 +46,8 @@ function initializeEventListeners() {
   handleWorkLiClick();
   handleDropdownToggle()
   handleIsDoneCountLoading();
+  handleWorkDropdownToggle();
+  handleWorkIsDoneCountLoading();
 }
 
 // Run when the DOM is fully loaded

@@ -4,7 +4,7 @@ import {
   deleteTodo,
   getTodos,
   toggleTodoDone,
-  getTodoCountMyDayIsDone,
+  getTodoCountIsDone,
 } from "./api.js";
 import { handleSidebarCountLoading } from "./side-bar.js";
 
@@ -299,7 +299,7 @@ export async function handleIsDoneCountLoading() {
   );
 
   if (doneCount) {
-    const myDayCountIsDone = await getTodoCountMyDayIsDone();
-    doneCount.innerText = myDayCountIsDone.todayIsDone;
+    const myDayCountIsDone = await getTodoCountIsDone("myDay");
+    doneCount.innerText = myDayCountIsDone.done;
   }
 }
