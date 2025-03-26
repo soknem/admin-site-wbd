@@ -1,0 +1,150 @@
+.main-search {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  padding: 0px 25px;
+  padding-top: 30px;
+}
+
+.main-search .search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  position: relative;
+  align-items: start;
+}
+
+.main-search .search-header .searching-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgb(37, 100, 207);
+}
+
+.main-search .search-header .searching-option {
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: rgb(37, 100, 207);
+}
+
+.main-search .data {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.main-search .data .search-notfound {
+  width: 50%;
+  margin: auto;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, display 0.3s ease;
+}
+
+.main-search .data .search-notfound.show {
+  display: block;
+  opacity: 1;
+}
+
+.main-search .data .search-drop-down-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 3px 10px;
+  padding: 20px 0px;
+  gap: 10px;
+  height: 50px;
+  cursor: pointer;
+  align-items: center;
+  position: relative;
+  box-shadow: inset 0px -1px 0px 0px rgba(185, 183, 182, 0.623);
+}
+
+.main-search .data .search-drop-down-header .arrow-icon {
+  transition: transform 0.3s ease;
+  margin-right: 8px;
+  transform: rotate(90deg);
+}
+
+.main-search .data .search-drop-down-header.rotate-down .arrow-icon {
+  transform: rotate(0deg);
+}
+
+.main-search .data .search-drop-down-header + .search-dropdown-content {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s 0s;
+}
+
+.main-search .data .search-drop-down-header + .search-dropdown-content.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.main-search .data .search-drop-down-header-hide {
+  display: none;
+}
+
+.main-search .data .ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  position: relative;
+}
+
+.main-search .data .ul .work-circle {
+  cursor: pointer;
+}
+
+.main-search .data .ul .item {
+  display: flex;
+  width: 100%;
+  height: 55px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+.main-search .data .ul .item:hover {
+  background-color: #d4d8d8bd;
+  transform: translateY(-1px);
+}
+
+.main-search .data .ul .item input {
+  width: 80px;
+  height: 15px;
+  color: blue;
+}
+
+.main-search .data .ul .item .title {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.main-search .data .ul .item .btn-icon {
+  text-align: center;
+  cursor: pointer;
+}
+
+.main-search .data .ul .item .important-btn {
+  color: blue;
+  margin: 0px 20px;
+}
+
+.main-search .data .ul .item .delete-btn {
+  color: red;
+}

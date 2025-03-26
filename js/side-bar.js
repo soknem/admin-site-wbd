@@ -22,35 +22,34 @@ export function handleActiveSidebar() {
   });
 }
 
-export function handleSidebarContentLoading() {
-  const rightSide = document.getElementById("right-side");
-  const menuItems = document.querySelectorAll(".side-bar .item");
-
-  async function loadContent(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.text();
-      const bodyContent = extractBodyTag(data);
-
-      if (bodyContent) {
-        rightSide.innerHTML = bodyContent;
-      } else {
-        console.warn("No content found in the fetched file.");
-      }
-    } catch (error) {
-      console.error("Error loading content:", error);
+export async function loadContent(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
-  }
 
-  function extractBodyTag(html) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-    return doc.body.outerHTML;
+    const data = await response.text();
+    const bodyContent = extractBodyTag(data);
+
+    if (bodyContent) {
+      document.getElementById("right-side").innerHTML = bodyContent;
+    } else {
+      console.warn("No content found in the fetched file.");
+    }
+  } catch (error) {
+    console.error("Error loading content:", error);
   }
+}
+
+function extractBodyTag(html) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
+  return doc.body.outerHTML;
+}
+
+export function handleSidebarContentLoading() {
+  const menuItems = document.querySelectorAll(".side-bar .item");
 
   loadContent("html/today.html");
 
@@ -62,6 +61,7 @@ export function handleSidebarContentLoading() {
     });
   });
 }
+
 
 export async function handleSidebarCountLoading() {
   const counts = await getTodoCount();

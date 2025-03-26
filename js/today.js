@@ -164,7 +164,9 @@ export function addTodoToList(ul, todo, section) {
     <input type="checkbox" class="circle" ${todo.isDone ? "checked" : ""} />
     <span class="title">${todo.title}</span>
     <span class="material-icons-outlined delete-btn btn-icon">delete</span>
-    <span class="material-icons-outlined important-btn btn-icon">${todo.isImportant?"star":"star_rate"}</span>
+    <span class="material-icons-outlined important-btn btn-icon">${
+      todo.isImportant ? "star" : "star_rate"
+    }</span>
   `;
   ul.appendChild(newItem);
 }
@@ -229,6 +231,8 @@ export function handleLiClick() {
       const section = item ? item.dataset.section : null;
       if (section === "myDay") {
         alert("uuid:" + uuid + section);
+      } else if (section === "search") {
+        alert("uuid:" + uuid + section + "??");
       }
     }
   });
@@ -324,4 +328,3 @@ export async function handleMyDayDateLoading() {
     myDateDateElm.innerText = myDayDate.date;
   }
 }
-

@@ -75,6 +75,11 @@ export async function toggleTodoImportant(uuid) {
   return response.json();
 }
 
+export async function searchTodos(title) {
+  const response = await fetch(`${API_URL}/search?title=${title}`);
+  return response.json();
+}
+
 // ✅ DELETE (Remove todo)
 export async function deleteTodo(uuid) {
   await fetch(`${API_URL}/${uuid}`, { method: "DELETE" });

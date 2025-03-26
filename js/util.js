@@ -58,20 +58,19 @@ export function handleToggleTodoImportantClick() {
       const uuid = item ? item.dataset.uuid : null;
       const section = item ? item.dataset.section : null;
 
-      alert(item.innerHTML)
-
       if (uuid) {
         try {
-          
           const todo = await toggleTodoImportant(uuid);
           if (todo) {
-            alert(uuid)
-            item.remove();
             handleSidebarCountLoading();
+            importantIcon.innerText =
+              importantIcon.innerText === "star" ? "star_rate" : "star";
             if (section === "myDay") {
               handleIsDoneCountLoading();
             } else if (section === "work") {
               handleWorkIsDoneCountLoading();
+            } else if (section === "important") {
+              item.remove();
             }
             showToast("Task is done!", "success");
           }

@@ -166,7 +166,8 @@ export function addTodoToList(ul, todo, section) {
         todo.isDone ? "checked" : ""
       } />
       <span class="title">${todo.title}</span>
-      <span class="material-icons-outlined delete-btn">delete</span>
+      <span class="material-icons-outlined delete-btn btn-icon">delete</span>
+          <span class="material-icons-outlined important-btn btn-icon">${todo.isImportant?"star":"star_rate"}</span>
     `;
 
   ul.appendChild(newItem);

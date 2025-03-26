@@ -220,10 +220,17 @@
     justify-content: start;
   }
 
-  .delete-btn {
-    width: 70px;
+  .btn-icon {
+    /* width: 50px; */
     text-align: center;
-    color: red;
     cursor: pointer;
+  }
+  .important-btn {
+    color: blue;
+    margin: 0px 20px;
+  }
+
+  .delete-btn {
+    color: red;
   }
 }

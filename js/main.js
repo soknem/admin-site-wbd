@@ -1,10 +1,9 @@
 // main.js
 import {
   handleSearchInput,
-  handleClearButtonClick,
   handleHamburgerButtonClick,
 } from "./functions.js";
-
+import { handleGlobalSearchClick } from "./search.js";
 import {
   handleActiveSidebar,
   handleSidebarContentLoading,
@@ -13,6 +12,7 @@ import {
 
 import { handleToggleTodoImportantClick } from "./util.js";
 
+import { handleSearchDropdownToggle,handleClearButtonClick } from "./search.js";
 import {
   handleAddButtonClick,
   handleLoadContentToToday,
@@ -51,6 +51,8 @@ function initializeEventListeners() {
   handleWorkDropdownToggle();
   handleWorkIsDoneCountLoading();
   handleToggleTodoImportantClick();
+  handleGlobalSearchClick();
+  handleSearchDropdownToggle();
 }
 
 // Run when the DOM is fully loaded

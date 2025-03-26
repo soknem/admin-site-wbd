@@ -13,22 +13,6 @@ export function handleSearchInput() {
   }
 }
 
-// Function to handle clear button click
-export function handleClearButtonClick() {
-  const searchInput = document.getElementById("searchInput");
-  const clearBtn = document.querySelector(".clear-btn");
-
-  clearBtn.addEventListener("click", function () {
-    clearSearchInput();
-  });
-
-  function clearSearchInput() {
-    searchInput.value = "";
-    clearBtn.style.display = "none";
-    searchInput.blur();
-  }
-}
-
 export function handleHamburgerButtonClick() {
   const hamburgerBtn = document.getElementById("menuToggle");
   const sideBar = document.getElementById("side-bar");
