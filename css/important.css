@@ -1,6 +1,242 @@
 .main-important {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: blue;
+  background-color: whitesmoke;
+  padding: 0px 20px;
+}
+
+.main-important .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  position: relative;
+  align-items: start;
+  padding-top: 27px;
+  font-size: 1rem;
+  .material-icons-outlined {
+    font-size: 1rem;
+    color: gray;
+  }
+  .column {
+    width: 100%;
+    display: inline;
+    color: gray;
+    .item {
+      padding: 3px;
+      cursor: pointer;
+    }
+    .item:hover {
+      background-color: white;
+    }
+  }
+  .column1 {
+    display: flex;
+    justify-content: start;
+    gap: 30px;
+
+    .item1 .my-day-icon {
+      font-size: 1.5rem;
+    }
+
+    .item1 .my-day {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: black;
+    }
+    .item1 .day-detail {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: gray;
+    }
+  }
+  .column2 {
+    display: flex;
+    justify-content: end;
+    gap: 40px;
+  }
+}
+
+.main-important .header.sidebar-hidden {
+  margin-left: 30px;
+}
+
+.main-important .add-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 120px;
+  border-radius: 5px;
+  outline: 0.3px solid lightgray;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  .box {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+  }
+}
+
+.main-important .add-container .top {
+  background-color: white;
+  position: relative;
+  .circle {
+    width: 16px;
+    height: 16px;
+    border: 1px solid blue;
+    border-radius: 50%;
+    appearance: none;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  .text-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    &::placeholder {
+      color: blue;
+      opacity: 1;
+    }
+
+    &:focus::placeholder {
+      color: #555;
+    }
+  }
+}
+.material-icons-outlined {
+  font-size: 1.2rem;
+}
+.main-important .add-container .bottom {
+  outline: 0.2px solid lightgray;
+  justify-content: space-between;
+
+  .icon-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: gray;
+    .material-icons-outlined {
+      font-size: 1.2rem;
+      color: gray;
+      cursor: pointer;
+    }
+  }
+  .add-btn {
+    padding: 7px;
+    background-color: white;
+    border-radius: 3px;
+    border: none;
+    outline: 0.3px solid lightgray;
+    cursor: pointer;
+  }
+}
+
+.main-important .data {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10px;
+  /* background-color: aqua; */
+  overflow-y: auto;
+  height: 100%;
+}
+
+.main-important .data .drop-down-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 3px 10px;
+  padding: 20px 0px;
+  gap: 10px;
+  height: 50px;
+  cursor: pointer;
+  align-items: center;
+  position: relative;
+  box-shadow: inset 0px -1px 0px 0px rgba(185, 183, 182, 0.623);
+
+  .arrow-icon {
+    transition: transform 0.3s ease;
+    margin-right: 8px;
+  }
+
+  &.rotate-down {
+    .arrow-icon {
+      transform: rotate(90deg);
+    }
+  }
+
+  + .dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s 0.5s;
+
+    &.show {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s 0s;
+    }
+  }
+}
+
+.main-important .data .ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  position: relative;
+  .circle {
+    cursor: pointer;
+  }
+}
+
+.main-important .data .item {
+  display: flex;
+  width: 100%;
+  height: 55px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s ease, background-color 0.1s ease;
+  /* cursor: pointer; */
+  &:hover {
+    background-color: #d4d8d8bd;
+    transform: translateY(-1px);
+  }
+
+  input {
+    width: 80px;
+    height: 15px;
+    color: blue;
+  }
+  .title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    cursor: pointer;
+  }
+  .btn-icon {
+    /* width: 50px; */
+    text-align: center;
+    cursor: pointer;
+  }
+  .important-btn {
+    color: blue;
+    margin: 0px 20px;
+  }
+
+  .delete-btn {
+    color: red;
+  }
 }

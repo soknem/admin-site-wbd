@@ -6,6 +6,68 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="main-important"></div>
+    <div class="main-important" id="main-important">
+      <div class="header" id="header">
+        <div class="column column1">
+          <div class="item item1">
+            <span class="material-icons-outlined menu-icon work-icon"
+              >home</span
+            >
+            <span class="work">ការងារ</span>
+          </div>
+          <div class="item">
+            <span class="material-icons-outlined">grid_view</span>
+            <span>ក្រឡា</span>
+          </div>
+          <div class="item">
+            <span class="material-icons-outlined">menu</span>
+            <span>បញ្ជី</span>
+          </div>
+        </div>
+        <div class="column column2">
+          <div class="item">
+            <span class="material-icons-outlined">sort</span>
+            <span>តម្រៀប</span>
+          </div>
+          <div class="item">
+            <span class="material-icons-outlined">check_box_outline_blank</span>
+            <span> ក្រុម</span>
+          </div>
+          <div class="item">
+            <span class="material-icons-outlined">lightbulb</span>
+            <span>កាណែនាំ</span>
+          </div>
+        </div>
+      </div>
+      <div class="add-container">
+        <div class="box top input-container">
+          <input type="radio" class="circle" />
+          <input
+            type="text"
+            class="text-input"
+            id="text-input"
+            placeholder="បន្ថែមការងារមួយ"
+          />
+        </div>
+        <div class="box bottom">
+          <div class="icon-container">
+            <span class="material-icons-outlined">calendar_month</span>
+            <span class="material-icons-outlined">notifications</span>
+            <span class="material-icons-outlined">sync</span>
+          </div>
+          <button class="add-btn" id="add-btn">បន្ថែម</button>
+        </div>
+      </div>
+
+      <div class="data">
+        <ul class="ul" id="ul"></ul>
+        <div class="work-drop-down-header">
+          <span class="material-icons-outlined arrow-icon">chevron_right</span>
+          <span>បានបញ្ចប់</span>
+          <span class="work-done-count" id="work-done-count">1</span>
+        </div>
+        <ul class="work-dropdown-content ul" id="work-completed-tasks"></ul>
+      </div>
+    </div>
   </body>
 </html>
